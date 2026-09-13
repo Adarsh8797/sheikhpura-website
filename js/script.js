@@ -33,34 +33,161 @@ document.addEventListener('DOMContentLoaded', () => {
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', false);
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.classList.remove('is-active');
     });
+  });
+
+  // Close the menu when tapping outside it, or pressing Escape
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.classList.remove('is-active');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.classList.remove('is-active');
+    }
   });
 
   /* ---- Footer year ---- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---- Image fade-in: photos ease in softly once they finish loading.
+     Without JS, images stay fully visible (progressive enhancement). ---- */
+  document.querySelectorAll('img').forEach(img => {
+    const markLoaded = () => {
+      img.classList.remove('img-loading');
+      img.classList.add('img-loaded');
+    };
+    if (img.complete && img.naturalWidth) return; // already visible, nothing to do
+    img.classList.add('img-loading');
+    img.addEventListener('load', markLoaded, { once: true });
+    img.addEventListener('error', markLoaded, { once: true }); // never leave an image stuck hidden
+  });
+
+  /* ---- Reading progress bar + scrollspy + back-to-top ----
+     One rAF-throttled scroll handler drives all three, so scrolling
+     stays smooth even with all the extra UI. */
+  const progressBar = document.getElementById('scrollProgress');
+  const backToTop = document.getElementById('backToTop');
+  const spyLinks = Array.from(document.querySelectorAll('.nav-links a:not(.nav-cta)'));
+  const spySections = spyLinks
+    .map(link => {
+      const id = (link.getAttribute('href') || '').replace('#', '');
+      const section = id ? document.getElementById(id) : null;
+      return section ? { link, section } : null;
+    })
+    .filter(Boolean);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const updateScrollUi = () => {
+    const y = window.scrollY;
+
+    if (progressBar) {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      progressBar.style.width = max > 0 ? `${Math.min((y / max) * 100, 100)}%` : '0%';
+    }
+
+    if (backToTop) backToTop.classList.toggle('visible', y > 640);
+
+    if (spySections.length) {
+      const probe = y + window.innerHeight * 0.35;
+      let current = spySections[0];
+      for (const item of spySections) {
+        if (item.section.offsetTop <= probe) current = item;
+      }
+      spyLinks.forEach(link => link.classList.remove('active'));
+      if (y > 60) current.link.classList.add('active');
+    }
+  };
+
+  let scrollUiTicking = false;
+  window.addEventListener('scroll', () => {
+    if (scrollUiTicking) return;
+    scrollUiTicking = true;
+    requestAnimationFrame(() => {
+      updateScrollUi();
+      scrollUiTicking = false;
+    });
+  }, { passive: true });
+  updateScrollUi();
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
   /* ---- Scroll reveal: fade/slide elements in as they enter viewport ---- */
   const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    revealEls.forEach(el => revealObserver.observe(el));
+  // Mark an element visible, then drop the reveal classes once the entrance
+  // finishes — hover transitions then run instantly again (no stagger delay
+  // left over) and :hover transforms aren't overridden by the reveal's
+  // own transform (a specificity quirk that used to mute card hovers).
+  const revealNow = (el) => {
+    if (el.classList.contains('is-visible')) return;
+    el.classList.add('is-visible');
 
-    // Safety net: if for any reason an element never gets marked visible
-    // (observer edge case, embedded-webview quirk, layout issue, etc.)
-    // force it visible after 600ms so content is never stuck invisible.
+    const delaySec = parseFloat(getComputedStyle(el).transitionDelay) || 0;
     setTimeout(() => {
+      el.classList.remove('reveal', 'is-visible', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3');
+      el.classList.add('reveal-done');
+    }, delaySec * 1000 + 800);
+  };
+
+  if (revealEls.length) {
+    if (!('IntersectionObserver' in window)) {
+      // Very old browser: just show everything immediately.
       revealEls.forEach(el => el.classList.add('is-visible'));
-    }, 600);
+    } else {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            revealNow(entry.target);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      // Safety net 1: whatever is on the first screen right now must be
+      // visible shortly after load, even if the observer misses it.
+      setTimeout(() => {
+        revealEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) revealNow(el);
+        });
+      }, 600);
+
+      // Safety net 2 (belt & braces): a light poll that reveals anything
+      // that should already be on screen — content must never get stuck
+      // invisible, even in a buggy embedded webview. Stops once the page
+      // has been scrolled to the bottom.
+      const revealFallback = setInterval(() => {
+        let pending = false;
+        revealEls.forEach(el => {
+          if (el.classList.contains('is-visible')) return;
+          const rect = el.getBoundingClientRect();
+          // Anything at or above the viewport's bottom edge should be
+          // visible by now (covers fast scrolling past a section too).
+          if (rect.top < window.innerHeight) revealNow(el);
+          else pending = true;
+        });
+        const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+        if (!pending && atBottom) clearInterval(revealFallback);
+      }, 800);
+    }
   }
 
   /* ---- Gallery photo wall: each tile independently crossfades to a
@@ -200,6 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let moveCount = 0;
     let currentPhoto = PUZZLE_PHOTOS[0];
 
+    // cosmetic: grid positions of the last swap, so those tiles can "pop"
+    let lastSwapPositions = null;
+
     // drag state
     let dragTile = null;
     let dragFromPos = null;
@@ -242,6 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
       [currentOrder[posA], currentOrder[posB]] = [currentOrder[posB], currentOrder[posA]];
       moveCount++;
       movesEl.textContent = `Moves: ${moveCount}`;
+      lastSwapPositions = [posA, posB];
       selectedIndex = null;
       render();
 
@@ -262,6 +393,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.setAttribute('aria-label', `Puzzle piece, position ${gridPos + 1}`);
         tile.style.touchAction = 'none'; // let us handle the gesture ourselves
         tile.addEventListener('pointerdown', (e) => onPointerDown(e, gridPos, tile));
+        // small pop on the two tiles that were just swapped
+        if (lastSwapPositions && lastSwapPositions.includes(gridPos)) {
+          tile.classList.add('puzzle-swap');
+          tile.addEventListener('animationend', () => tile.classList.remove('puzzle-swap'), { once: true });
+        }
         puzzleGrid.appendChild(tile);
       });
     }
@@ -384,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
       celebrationEl.classList.add('puzzle-celebration-visible');
 
       // reveal the name/mobile capture form with the final move count
-      resultHeadingEl.textContent = `You solved it in ${moveCount} move${moveCount === 1 ? '' : 's'}! 🎉`;
+      resultHeadingEl.textContent = `Wah! Aapne ${moveCount} moves mein solve kar diya! 🎉`;
       resultFormEl.classList.remove('puzzle-result-hidden');
       resultFormEl.reset();
       resultThanksEl.classList.remove('puzzle-result-thanks-visible');
@@ -405,6 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentOrder = shuffleOrder();
       moveCount = 0;
       selectedIndex = null;
+      lastSwapPositions = null;
       movesEl.textContent = 'Moves: 0';
       celebrationEl.classList.remove('puzzle-celebration-visible');
       confettiEl.innerHTML = '';
