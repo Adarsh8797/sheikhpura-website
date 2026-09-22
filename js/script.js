@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         treePopup.classList.add('tree-popup-visible');
         sessionStorage.setItem('treePopupShown_v1', 'true');
-      }, 2000);
+      }, 1250);
     }
 
     const closeTreePopup = () => {
