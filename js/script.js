@@ -636,5 +636,36 @@ document.addEventListener('DOMContentLoaded', () => {
       feedbackForm.reset();
     });
   }
+  /* ---- Tree Plantation Popup (1500 Ped Drive) ---- */
+  const treePopup = document.getElementById('treePopup');
+  const treePopupClose = document.getElementById('treePopupClose');
+  const treePopupSkip = document.getElementById('treePopupSkip');
 
+  if (treePopup) {
+    const popupAlreadyShown = sessionStorage.getItem('treePopupShown_v1');
+
+    if (!popupAlreadyShown) {
+      setTimeout(() => {
+        treePopup.classList.add('tree-popup-visible');
+        sessionStorage.setItem('treePopupShown_v1', 'true');
+      }, 2000);
+    }
+
+    const closeTreePopup = () => {
+      treePopup.classList.remove('tree-popup-visible');
+    };
+
+    treePopupClose.addEventListener('click', closeTreePopup);
+    treePopupSkip.addEventListener('click', closeTreePopup);
+
+    treePopup.addEventListener('click', (e) => {
+      if (e.target === treePopup) closeTreePopup();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && treePopup.classList.contains('tree-popup-visible')) {
+        closeTreePopup();
+      }
+    });
+  }
 });

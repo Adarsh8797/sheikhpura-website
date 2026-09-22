@@ -1729,4 +1729,314 @@ img.img-loaded  { opacity: 1; }
   .hero-title { font-size: clamp(1.9rem, 10vw, 2.4rem); }
   .hero-sub { font-size: 0.95rem; }
   .section-sub { font-size: 0.98rem; }
+}/* ==========================================================================
+   Tree Plantation Popup — 1500 Ped Drive
+   ========================================================================== */
+.tree-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(20, 28, 39, 0.72);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.tree-popup-overlay.tree-popup-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tree-popup-box {
+  position: relative;
+  background: linear-gradient(180deg, #F8F3E7 0%, #F1E9D6 100%);
+  border-radius: 22px;
+  padding: 2.5rem 2rem 1.75rem;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  transform: scale(0.9) translateY(24px);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 0 3px rgba(76, 107, 79, 0.4),
+    0 0 0 7px rgba(241, 233, 214, 0.9);
+  overflow: hidden;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+/* Soft marigold glow at the top — feels warm and inviting */
+.tree-popup-box::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(227, 167, 60, 0.28), transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tree-popup-box::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(76, 107, 79, 0.15), transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tree-popup-visible .tree-popup-box {
+  transform: scale(1) translateY(0);
+}
+
+.tree-popup-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(30, 42, 56, 0.08);
+  color: var(--indigo);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+}
+
+.tree-popup-close:hover {
+  background: rgba(30, 42, 56, 0.18);
+  transform: rotate(90deg);
+}
+
+.tree-popup-icon {
+  font-size: 3.8rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  animation: tree-sway 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(76, 107, 79, 0.3));
+}
+
+@keyframes tree-sway {
+  0%, 100% { transform: rotate(-6deg) scale(1); }
+  50%      { transform: rotate(6deg) scale(1.08); }
+}
+
+.tree-popup-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--leaf);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--indigo);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.7rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-title span {
+  color: var(--brick);
+  font-style: italic;
+}
+
+.tree-popup-sub {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-stats {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 1.1rem 0;
+  border-top: 1px dashed rgba(76, 107, 79, 0.35);
+  border-bottom: 1px dashed rgba(76, 107, 79, 0.35);
+  margin-bottom: 1.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0 1.4rem;
+  position: relative;
+}
+
+.tree-popup-stats > div:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(76, 107, 79, 0.25);
+}
+
+.tree-popup-stats strong {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--brick);
+  line-height: 1;
+}
+
+.tree-popup-stats span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.35rem;
+}
+
+.tree-popup-msg {
+  font-size: 0.93rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-msg strong {
+  color: var(--indigo);
+  font-weight: 600;
+}
+
+.tree-popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #4C6B4F 0%, #2D5A27 100%);
+  color: #F8F3E7;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  border-radius: 12px;
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 10px 24px rgba(76, 107, 79, 0.35);
+}
+
+.tree-popup-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-180%) skewX(-20deg);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.tree-popup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(76, 107, 79, 0.5);
+}
+
+.tree-popup-btn:hover::after {
+  transform: translateX(360%) skewX(-20deg);
+}
+
+.tree-popup-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.tree-popup-btn span {
+  font-size: 1.15rem;
+}
+
+.tree-popup-skip {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0.3rem 0.5rem;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-skip:hover {
+  color: var(--brick);
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .tree-popup-box {
+    padding: 2rem 1.4rem 1.5rem;
+    border-radius: 18px;
+  }
+  .tree-popup-title {
+    font-size: 1.45rem;
+  }
+  .tree-popup-icon {
+    font-size: 3rem;
+  }
+  .tree-popup-stats > div {
+    padding: 0 0.9rem;
+  }
+  .tree-popup-stats strong {
+    font-size: 1.4rem;
+  }
+  .tree-popup-msg {
+    font-size: 0.87rem;
+  }
+  .tree-popup-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.2rem;
+  }
 }
