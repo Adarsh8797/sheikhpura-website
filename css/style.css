@@ -14,7 +14,7 @@
   --ink-soft:     #5C564C;
   --border-line:  rgba(30, 42, 56, 0.12);
 
-  --font-display: 'Fraunces', serif;
+  --font-display: 'Fraunces', 'Tiro Devanagari Hindi', serif;
   --font-body:    'Hind', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
 
@@ -2038,5 +2038,31 @@ img.img-loaded  { opacity: 1; }
   .tree-popup-btn {
     font-size: 0.95rem;
     padding: 0.9rem 1.2rem;
+  }
+}/* ==========================================================================
+   Partners — Disclaimer Note
+   ========================================================================== */
+.partners-disclaimer {
+  margin-top: 2.5rem;
+  padding: 1.1rem 1.4rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  background: rgba(30, 42, 56, 0.04);
+  border-left: 3px solid var(--marigold);
+  border-radius: 8px;
+  max-width: 780px;
+}
+
+.partners-disclaimer strong {
+  color: var(--indigo);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .partners-disclaimer {
+    font-size: 0.8rem;
+    padding: 1rem 1.1rem;
+    margin-top: 2rem;
   }
 }
