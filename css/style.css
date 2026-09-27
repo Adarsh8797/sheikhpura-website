@@ -2066,3 +2066,699 @@ img.img-loaded  { opacity: 1; }
     margin-top: 2rem;
   }
 }
+/* ==========================================================================
+   INVITATION PAGE — 1500 पेड़ अभियान
+   ========================================================================== */
+
+.invitation-page {
+  background: var(--cream);
+}
+
+/* ---- Invitation Hero ---- */
+.invitation-hero {
+  min-height: 90vh;
+  padding: calc(var(--header-h) + var(--ticker-h) + 3rem) 1.5rem 4rem;
+  background: linear-gradient(160deg, var(--indigo-deep) 0%, #2D5A27 60%, var(--leaf) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.invitation-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(227, 167, 60, 0.18), transparent 60%);
+  pointer-events: none;
+}
+
+.invitation-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  width: 100%;
+}
+
+.invitation-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--marigold);
+  margin-bottom: 1rem;
+  animation: pulse-dot-soft 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot-soft {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+.invitation-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 900;
+  color: var(--cream-soft);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.invitation-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--marigold);
+  margin-bottom: 1.5rem;
+}
+
+.invitation-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #2D5A27 0%, #4C6B4F 100%);
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  border: 3px solid var(--marigold);
+  margin-bottom: 1.8rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  animation: badge-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+}
+
+@keyframes badge-pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.badge-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--cream-soft);
+  line-height: 1;
+}
+
+.badge-label {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--marigold);
+}
+
+.invitation-event-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--cream-soft);
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+}
+
+.invitation-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--marigold);
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+/* ---- Countdown ---- */
+.countdown {
+  background: rgba(20, 28, 39, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(227, 167, 60, 0.3);
+  border-radius: 18px;
+  padding: 1.5rem 1.2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.countdown-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  margin-bottom: 1rem;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.countdown-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.5rem;
+  position: relative;
+}
+
+.countdown-item:not(:last-child)::after {
+  content: ':';
+  position: absolute;
+  right: -0.25rem;
+  top: 15%;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--marigold);
+  opacity: 0.5;
+}
+
+.countdown-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 900;
+  color: var(--cream-soft);
+  line-height: 1;
+  min-width: 2ch;
+}
+
+.countdown-unit {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(241, 233, 214, 0.65);
+}
+
+/* ---- Event Details ---- */
+.event-details {
+  padding: 5rem 1.5rem;
+  background: var(--cream);
+}
+
+.event-details-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.event-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.event-head .section-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-head .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.event-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.event-card {
+  background: #fff;
+  border: 1px solid var(--border-line);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(30, 42, 56, 0.15);
+    border-color: var(--marigold);
+  }
+}
+
+.event-card-date {
+  background: linear-gradient(135deg, var(--indigo) 0%, #2D5A27 100%);
+  color: var(--cream-soft);
+  padding: 1.5rem 1.5rem 1.2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.event-day {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--marigold);
+  line-height: 1;
+}
+
+.event-month {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.event-weekday {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 0.2rem;
+}
+
+.event-card-body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.event-card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--indigo);
+  line-height: 1.25;
+}
+
+.event-card-time {
+  font-size: 0.95rem;
+  color: var(--brick);
+  font-weight: 600;
+}
+
+.event-card-venue {
+  font-size: 0.93rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+.event-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  padding: 0.6rem 1.1rem;
+  background: var(--leaf);
+  color: var(--cream-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.event-map-btn:hover {
+  background: #2D5A27;
+  transform: translateY(-2px);
+}
+
+/* ---- Invitation Message ---- */
+.invitation-message {
+  background: linear-gradient(180deg, #F8F3E7 0%, #F1E9D6 100%);
+  border: 2px solid var(--marigold);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(30, 42, 56, 0.08);
+}
+
+.invitation-msg-line {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--indigo);
+  margin-bottom: 0.5rem;
+}
+
+.invitation-msg-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-top: 1.2rem;
+}
+
+.invitation-msg-text strong {
+  color: var(--brick);
+  font-weight: 700;
+}
+
+/* ---- Poster Section ---- */
+.poster-section {
+  padding: 5rem 1.5rem;
+  background: var(--cream-soft);
+  border-top: 1px solid var(--border-line);
+}
+
+.poster-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.poster-inner .section-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.poster-wrap {
+  margin-top: 2.5rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(30, 42, 56, 0.2);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poster-wrap:hover {
+  transform: scale(1.02);
+}
+
+.poster-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.poster-note {
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+/* ---- Sponsors ---- */
+.sponsor-section {
+  padding: 5rem 1.5rem;
+  background: var(--cream);
+  border-top: 1px solid var(--border-line);
+}
+
+.sponsor-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sponsor-inner .section-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sponsor-card {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 2rem 2rem;
+  background: #fff;
+  border: 2px solid var(--marigold);
+  border-radius: 20px;
+  text-align: left;
+  box-shadow: 0 16px 40px rgba(30, 42, 56, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .sponsor-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px rgba(30, 42, 56, 0.14);
+  }
+}
+
+.sponsor-logo {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  border: 1px solid var(--border-line);
+}
+
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sponsor-info {
+  flex-grow: 1;
+}
+
+.sponsor-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--indigo);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.sponsor-address {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+}
+
+.sponsor-since {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--marigold-dim);
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+/* ---- Share Section ---- */
+.share-section {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(180deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  text-align: center;
+}
+
+.share-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.share-section .section-eyebrow { color: var(--marigold); }
+.share-section .section-title { color: var(--cream-soft); }
+.share-section .section-sub { color: rgba(241, 233, 214, 0.72); margin-left: auto; margin-right: auto; }
+.share-section .section-title::after { margin-left: auto; margin-right: auto; }
+
+.organizer-info {
+  margin: 2.5rem auto 0;
+  padding: 1.5rem 1.75rem;
+  background: rgba(241, 233, 214, 0.06);
+  border: 1px solid rgba(241, 233, 214, 0.14);
+  border-radius: 14px;
+  max-width: 480px;
+  color: var(--cream-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.organizer-info a {
+  color: var(--marigold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.organizer-info a:hover {
+  opacity: 0.8;
+}
+
+.share-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.share-btn span {
+  font-size: 1.2rem;
+}
+
+.share-btn:hover {
+  transform: translateY(-3px);
+}
+
+.share-btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+.share-btn-whatsapp:hover {
+  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.45);
+}
+
+.share-btn-instagram {
+  background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(225, 48, 108, 0.3);
+}
+.share-btn-instagram:hover {
+  box-shadow: 0 14px 28px rgba(225, 48, 108, 0.45);
+}
+
+.share-btn-facebook {
+  background: #1877F2;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(24, 119, 242, 0.3);
+}
+.share-btn-facebook:hover {
+  box-shadow: 0 14px 28px rgba(24, 119, 242, 0.45);
+}
+
+.share-btn-contact {
+  background: var(--marigold);
+  color: var(--indigo-deep);
+  box-shadow: 0 8px 20px rgba(227, 167, 60, 0.3);
+}
+.share-btn-contact:hover {
+  box-shadow: 0 14px 28px rgba(227, 167, 60, 0.45);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .invitation-hero {
+    min-height: 85vh;
+    padding: calc(var(--header-h) + var(--ticker-h) + 2rem) 1.25rem 3rem;
+  }
+  .invitation-title { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .invitation-subtitle { font-size: 1.2rem; }
+  .badge-number { font-size: 2rem; }
+  .badge-label { font-size: 1.3rem; }
+  .invitation-event-name { font-size: 1.15rem; }
+  .countdown { padding: 1.2rem 0.9rem; }
+  .countdown-item:not(:last-child)::after { font-size: 1.1rem; right: -0.3rem; }
+  .countdown-unit { font-size: 0.62rem; }
+
+  .event-details,
+  .poster-section,
+  .sponsor-section,
+  .share-section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .event-cards { grid-template-columns: 1fr; gap: 1.2rem; }
+  .event-day { font-size: 2.8rem; }
+  .event-card-title { font-size: 1.2rem; }
+
+  .invitation-message { padding: 2rem 1.4rem; }
+  .invitation-msg-text { font-size: 1rem; }
+
+  .sponsor-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+    padding: 1.75rem 1.5rem;
+  }
+  .sponsor-name { font-size: 1.15rem; }
+
+  .share-buttons { grid-template-columns: 1fr; }
+  .share-btn { font-size: 0.9rem; padding: 0.95rem 1.1rem; }
+
+  .organizer-info { font-size: 0.92rem; padding: 1.25rem 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  .invitation-hero { padding-left: 1rem; padding-right: 1rem; }
+  .invitation-title { font-size: clamp(1.8rem, 10vw, 2.3rem); }
+  .invitation-badge { padding: 0.7rem 1.5rem; }
+  .badge-number { font-size: 1.7rem; }
+  .badge-label { font-size: 1.1rem; }
+  .countdown-grid { gap: 0.2rem; }
+  .countdown-item { padding: 0.3rem; }
+  .countdown-num { font-size: 1.35rem; }
+  .countdown-unit { font-size: 0.58rem; }
+  .event-day { font-size: 2.4rem; }
+}
+/* ==========================================================================
+   Popup — Event Info + Share Button (Extra styles)
+   ========================================================================== */
+.tree-popup-event-info {
+  background: rgba(76, 107, 79, 0.08);
+  border: 1px solid rgba(76, 107, 79, 0.2);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.tree-popup-event-info p {
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 0.75rem;
+}
+
+.tree-popup-event-info p:last-child {
+  margin-bottom: 0;
+}
+
+.tree-popup-event-info strong {
+  color: var(--indigo);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.tree-popup-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: #25D366;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+}
+
+.tree-popup-share:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.45);
+}
