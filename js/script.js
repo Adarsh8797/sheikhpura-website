@@ -703,5 +703,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+      /* ---- Mobile Navbar Scroll Indicator ---- */
+  const navLinksContainer = document.getElementById('navLinks');
+  const navbarElement = document.querySelector('.navbar');
+
+  if (navLinksContainer && navbarElement) {
+    // Check karein ki user end tak scroll kar chuka hai ya nahi
+    const checkNavScroll = () => {
+      // Agar screen badi hai (desktop), toh yeh logic mat chalao
+      if (window.innerWidth > 860) {
+        navbarElement.classList.remove('scrolled-end');
+        return;
+      }
+
+      const maxScroll = navLinksContainer.scrollWidth - navLinksContainer.clientWidth;
+      
+      // Agar scroll bilkul zero hai, ya end tak pahuch gaya hai
+      if (navLinksContainer.scrollLeft >= maxScroll - 10) {
+        navbarElement.classList.add('scrolled-end');
+      } else {
+        navbarElement.classList.remove('scrolled-end');
+      }
+    };
+
+    // Jab bhi user swipe kare, check karo
+    navLinksContainer.addEventListener('scroll', checkNavScroll);
+
+    // Jab window resize ho (mobile se pc), toh check karo
+    window.addEventListener('resize', checkNavScroll);
+    
+    // Page load hone par ek baar check karo
+    setTimeout(checkNavScroll, 500);
+  }
   }
 });

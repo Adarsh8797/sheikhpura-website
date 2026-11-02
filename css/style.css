@@ -2796,3 +2796,54 @@ img.img-loaded  { opacity: 1; }
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(37, 211, 102, 0.45);
 }
+/* ==========================================================================
+   Mobile Navbar - Fade Effect & Arrow Indicator
+   ========================================================================== */
+@media (max-width: 860px) {
+  /* Navbar container ko relative banayein taaki arrow iske andar set ho */
+  .navbar {
+    position: relative; 
+  }
+
+  /* Right side par fade effect (safed dhundh) */
+  .navbar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 40px; /* Sirf links wale area jitna */
+    background: linear-gradient(to right, transparent, var(--cream-soft));
+    pointer-events: none; /* Taaki click hone se na roke */
+    z-index: 5;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Chhota sa arrow icon (>>) */
+  .navbar::before {
+    content: '›';
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 1.5rem;
+    color: var(--brick);
+    font-weight: bold;
+    z-index: 6;
+    pointer-events: none;
+    animation: pulse-arrow 1.5s infinite;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Arrow ko hilne ka animation */
+  @keyframes pulse-arrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  /* Agar user ne scroll karke end kar liya, toh arrow hide ho jaye */
+  /* Hum JS ke through ek class 'scrolled-end' add karenge */
+  .navbar.scrolled-end::after,
+  .navbar.scrolled-end::before {
+    opacity: 0;
+  }
+}
