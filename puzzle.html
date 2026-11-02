@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play & Win | Apna Sheikhpura</title>
+<meta name="description" content="Sheikhpura photo puzzle solve karein aur Apna Sheikhpura ke saath Instagram collab jeetne ka mauka payein!">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Hind:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/images/logos/favicon.png">
+</head>
+<body>
+
+<!-- ===== Ticker ===== -->
+<div class="ticker-bar" aria-label="Latest updates ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <a class="ticker-item" href="index.html">🏠 Apna Sheikhpura — Home</a>
+    <a class="ticker-item" href="https://wa.me/919234727830" target="_blank" rel="noopener">✆ Call / WhatsApp: +91 92347 27830</a>
+  </div>
+</div>
+
+<!-- ===== Navbar ===== -->
+<header class="site-header" id="siteHeader">
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <img src="assets/images/logos/apna-sheikhpura-logo.png" alt="Apna Sheikhpura logo" class="brand-mark">
+      <span class="brand-text">Apna <em>Sheikhpura</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" style="display:none;">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#posts">Recent Posts</a></li>
+      <li><a href="index.html#about">About District</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="puzzle.html" class="active">Play</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Advertise</a></li>
+    </ul>
+
+    <span class="scroll-progress" id="scrollProgress" aria-hidden="true"></span>
+  </nav>
+</header>
+
+<!-- ===== Photo Puzzle Game ===== -->
+<section id="puzzle" class="puzzle-section" style="margin-top: var(--header-h); padding-top: 4rem; min-height: 80vh;">
+  <div class="puzzle-inner">
+    <div class="puzzle-head reveal">
+      <p class="section-eyebrow">Play &amp; Win</p>
+      <h2 class="section-title">Puzzle Solve Karo</h2>
+      <p class="section-sub">
+        Kisi bhi do pieces ko tap karo — ya drag karke aapas mein swap karo — aur picture wapas jodo.
+        Sabse kam moves mein solve karo aur Apna Sheikhpura ke saath Instagram collab jeetne ka mauka pao!
+      </p>
+      <button type="button" class="puzzle-terms-link" id="puzzleTermsBtn">Terms &amp; Conditions</button>
+    </div>
+
+    <div class="puzzle-game reveal reveal-delay-1">
+      <div class="puzzle-grid-wrap">
+        <div class="puzzle-grid" id="puzzleGrid" aria-label="Sliding photo puzzle"></div>
+        <div class="puzzle-celebration" id="puzzleCelebration" aria-live="polite">
+          <div class="puzzle-confetti" id="puzzleConfetti"></div>
+          <div class="puzzle-celebration-text">
+            <span class="puzzle-celebration-emoji">🎉</span>
+            <span>Ho gaya solve!</span>
+          </div>
+        </div>
+      </div>
+      <div class="puzzle-meta">
+        <span class="puzzle-moves" id="puzzleMoves">Moves: 0</span>
+        <button class="btn btn-ghost puzzle-shuffle-btn" id="puzzleShuffle">Shuffle</button>
+      </div>
+
+      <div class="puzzle-result" id="puzzleResult">
+        <p class="puzzle-result-heading" id="puzzleResultHeading">Wah! Aapne 0 moves mein solve kar diya! 🎉</p>
+        <form class="puzzle-result-form" id="puzzleResultForm">
+          <input type="text" id="puzzleName" placeholder="Apna naam likho" required>
+          <input type="text" id="puzzleInstagram" placeholder="Aapki Instagram ID (jaise @yourname)" required>
+          <button type="submit" class="btn btn-primary puzzle-result-submit">Score Submit Karo</button>
+        </form>
+        <p class="puzzle-result-thanks" id="puzzleResultThanks">Shukriya! Aapka score record ho gaya. ✅</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal-overlay" id="puzzleTermsModal">
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="puzzleTermsClose" aria-label="Close">&times;</button>
+      <h3 class="modal-title">Collaboration — Terms &amp; Conditions</h3>
+      <ul class="modal-list">
+        <li>Collaboration is offered to the genuine winner only — someone who already follows <strong>@apna_sheikhpura</strong> on Instagram and has good, authentic content on their profile, or a genuine local business.</li>
+        <li>If two or more people finish in the same number of moves, the one who submitted their score first (by date and time) will be considered the winner.</li>
+        <li>Apna Sheikhpura reserves the right to verify entries before confirming any collaboration.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <p>© <span id="year"></span> Apna Sheikhpura. Designed &amp; Developed by Adarsh Priydarshi.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

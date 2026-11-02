@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Apna Sheikhpura</title>
+<meta name="description" content="Sheikhpura ki pahadiyan, galiyan, tyohaar aur roz ki zindagi — kuch khaas pal, hamare lens se.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Hind:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/images/logos/favicon.png">
+</head>
+<body>
+
+<!-- ===== Announcement Ticker ===== -->
+<div class="ticker-bar" aria-label="Latest updates ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <a class="ticker-item" href="index.html">🏠 Apna Sheikhpura — Home</a>
+    <a class="ticker-item" href="https://wa.me/919234727830" target="_blank" rel="noopener">✆ Call / WhatsApp: +91 92347 27830</a>
+    <a class="ticker-item" href="https://www.instagram.com/apna_sheikhpura" target="_blank" rel="noopener">◎ Follow us on Instagram — @apna_sheikhpura</a>
+  </div>
+</div>
+
+<!-- ===== Navbar ===== -->
+<header class="site-header" id="siteHeader">
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <img src="assets/images/logos/apna-sheikhpura-logo.png" alt="Apna Sheikhpura logo" class="brand-mark">
+      <span class="brand-text">Apna <em>Sheikhpura</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" style="display:none;">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#posts">Recent Posts</a></li>
+      <li><a href="index.html#about">About District</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="puzzle.html">Play</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Advertise</a></li>
+    </ul>
+
+    <span class="scroll-progress" id="scrollProgress" aria-hidden="true"></span>
+  </nav>
+</header>
+
+<!-- ===== Gallery ===== -->
+<section id="gallery" class="gallery-section" style="margin-top: var(--header-h); padding-top: 4rem;">
+  <div class="gallery-inner">
+
+    <div class="gallery-head reveal">
+      <p class="section-eyebrow">Hamari Nazar Se</p>
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-sub">
+        Sheikhpura ki pahadiyan, galiyan, tyohaar aur roz ki zindagi — kuch khaas pal, hamare lens se.
+      </p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-tile gtile-wide reveal reveal-delay-1"><img src="assets/images/gallery/gallery-1.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile gtile-tall reveal reveal-delay-2"><img src="assets/images/gallery/gallery-2.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile reveal reveal-delay-3"><img src="assets/images/gallery/gallery-3.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile reveal reveal-delay-1"><img src="assets/images/gallery/gallery-4.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile gtile-tall reveal reveal-delay-2"><img src="assets/images/gallery/gallery-5.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile reveal reveal-delay-3"><img src="assets/images/gallery/gallery-6.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile gtile-wide reveal reveal-delay-1"><img src="assets/images/gallery/gallery-7.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile gtile-tall reveal reveal-delay-2"><img src="assets/images/gallery/gallery-8.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile reveal reveal-delay-3"><img src="assets/images/gallery/gallery-9.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile reveal reveal-delay-1"><img src="assets/images/gallery/gallery-10.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile gtile-tall reveal reveal-delay-2"><img src="assets/images/gallery/gallery-11.jpg" alt="Sheikhpura photo"></div>
+      <div class="gallery-tile reveal reveal-delay-3"><img src="assets/images/gallery/gallery-12.jpg" alt="Sheikhpura photo"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <p>© <span id="year"></span> Apna Sheikhpura. Designed &amp; Developed by Adarsh Priydarshi.</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

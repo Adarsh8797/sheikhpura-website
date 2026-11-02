@@ -1607,45 +1607,79 @@ img.img-loaded  { opacity: 1; }
 .back-to-top:active { transform: scale(0.9); }
 
 /* ==========================================================================
-   Mobile
+   Mobile Navigation (App-style scrollable menu)
    ========================================================================== */
 @media (max-width: 860px) {
-  .nav-toggle { display: flex; }
-
-  .nav-links {
-    position: fixed;
-    top: calc(var(--header-h) + var(--ticker-h));
-    left: 0; right: 0;
-    background: var(--cream-soft);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    padding: 0.5rem 1.75rem 1.5rem;
-    border-bottom: 1px solid var(--border-line);
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+  :root {
+    --header-h: 105px; /* Header ki height badha di taaki logo aur links dono fit hon */
   }
 
-  .nav-links.open {
-    transform: translateY(0);
+  /* Hamburger (three dots) ko hide kar dein */
+  .nav-toggle { 
+    display: none !important; 
+  }
+
+  /* Navbar ko 2 lines mein set karein: Logo upar, Links neeche */
+  .navbar {
+    flex-direction: column;
+    padding: 0.6rem 0.5rem;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .brand { 
+    justify-content: center; 
+    margin: 0 auto;
+  }
+
+  /* Links ko ek scrollable line mein badal dein */
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 0 0.5rem 0.2rem;
+    gap: 1.2rem;
+    position: static;
     opacity: 1;
     pointer-events: auto;
+    transform: none;
+    background: transparent;
+    border: none;
+    
+    /* Scrollbar hide karne ke liye */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
-  .nav-links li { width: 100%; padding: 0.15rem 0; border-bottom: 1px solid var(--border-line); }
-  .nav-links li:last-child { border-bottom: none; padding-top: 0.75rem; }
-  .nav-cta { display: inline-block; }
+  /* Links ki styling */
+  .nav-links li {
+    border: none;
+    width: auto;
+    padding: 0;
+  }
 
-  /* Roomier tap targets for thumbs */
   .nav-links a {
-    display: block;
-    padding: 0.75rem 0;
-    font-size: 1rem;
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
   }
-  .nav-links li:last-child .nav-cta { padding: 0.7rem 1.15rem; }
 
+  /* Active link ke neeche underline */
+  .nav-links a.active::after,
+  .nav-links a:hover::after {
+    width: 100% !important;
+  }
+
+  /* Hero section ka padding thoda adjust karein kyunki header badh gaya hai */
+  .hero {
+    padding-top: calc(var(--header-h) + var(--ticker-h) + 10px);
+  }
   /* Staggered entrance as the menu slides in */
   .nav-links.open li { animation: nav-item-in 0.35s var(--ease-out-expo) backwards; }
   .nav-links.open li:nth-child(1) { animation-delay: 0.02s; }
